@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaginaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,29 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('canciones/{id?}', function ($id = null) {
-    $listaCanciones = [];
-    $listaCanciones[] = ["nombre" => 'culpable o no', 'artista' => 'Luis Miguel'];
-    $listaCanciones[] = ["nombre" => 'Tonta', 'artista' => 'Diego Verdague'];
-    if(!is_null($id)){
-        $cancion_sel = $listaCanciones[$id];
-
-    } else{
-
-        $cancion_sel = null;
-
-    }
-
-    
-
-    
-
-    
-
-   // dd($listaCanciones);
-    return view('canciones', compact('listaCanciones', 'cancion_sel'));
-    //->with(['listaCanciones'=>$listaCanciones]);
-});
+Route::get('canciones/{id?}', [PaginaController::class, 'canciones']);
+Route::get('contacto', [PaginaController::class, 'contacto']);   
+Route::post('contacto',[PaginaController::class, 'bautizo']);
 
 //Route::get('canciones/{id}' , function($id){
 
@@ -54,3 +35,5 @@ Route::get('canciones/{id?}', function ($id = null) {
 
 
 //});
+
+
